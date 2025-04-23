@@ -1,5 +1,7 @@
 use std::error::Error;
 use std::fs;
+use std::process;
+use std::process::Command;
 
 
 
@@ -23,7 +25,7 @@ impl Config {
 pub fn run(config:Config) -> Result<(),Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
     for line in search(&config.query,&contents){
-        println!("{line}");
+        println!("\x1b[33m{}\x1b[0m", line); 
     }
     Ok(())
 }
